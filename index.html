@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo_alura.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="script.js" defer></script>
+    <script type="text/javascript" src="ahorcado.js" defer></script>
+    <title>Juego del Ahorcado - Alura</title>
+</head>
+<body>
+    <header class="header" id="vistaHeader">
+        <a href="https://www.aluracursos.com/"><img src="img/logo_alura.png" alt="logo alura" class="logo"></a>
+    </header>
+    <main>
+        <!--SECCIÓN VISTA INICIAL DEL MENU DEL JUEGO-->
+        <section class="verSeccion" id="vistaInicio">
+            <div class="contenedor">
+                <div class="conteCentrado">
+                    <input class="botonUniv" id="btnIniciarJuego" type="submit" value="Iniciar juego del ahorcado">
+                    <input class="botonUniv" id="btnAgregarPalabra" type="submit" value="Agregar palabra secreta">
+                </div>
+            </div>
+        </section>
+        <!--SECCIÓN VISTA DEL JUEGO AHORCADO-->
+        <section class="ocultarSeccion" id="vistaJuego">
+            <div class="contenedor">
+                <canvas width="350" height="360"></canvas>
+                <div id="contPalabraSecreta"></div>
+                <div id="contLetrasUsadas"></div>
+            </div>
+        </section>
+        <!--SECCIÓN VISTA PARA AGREGAR PALABRAS SECRETAS-->
+        <section class="ocultarSeccion" id="vistaPalabra">
+            <div class="contenedor">
+                <div class="conteCentrado">
+                    <input id="palabra" placeholder="Escriba aquí" maxlength="8" onkeypress="return condicionPalabra(event);" onkeyup="convertirMayuscula(this);" type="text">
+                    <img src="img/alerta.png" alt="símbolo de alerta"> Máximo 8 y mínimo 3 caracteres (sin tildes).</img>
+                    <input class="botonUniv" id="btnAgregar" type="submit" value="Agregar">
+                    <button class="botonUniv" id="btnVolver">Volver</button>
+                </div>
+            </div>
+        </section>
+        <!--SECCIÓN VENTANA FLOTANTE PARA MENSAJE-->
+        <div class="ocultarSeccion" id="mensajeJuego">
+            <div id="contTextoVentanaFlotante"></div>
+            <div id="contBtnVentanaFlotante">
+                <button id="btnAceptar" class="botonUniv">Aceptar</button>
+            </div>
+        </div>
+    </main>
+    <!--SECCIÓN TECLADO PARA DISPOSITIVOS MOVILES-->
+    <section class="ocultarSeccion" id="vistaTeclado">
+            <div class="conteCentrado" id="teclado">
+                <button id="letraA" class="tecla" onclick="teclaPresionada('A'); contadorErrores('A'); contadorAciertos('A');">A</button>
+                <button id="letraB" class="tecla" onclick="teclaPresionada('B'); contadorErrores('B'); contadorAciertos('B');">B</button>
+                <button id="letraC" class="tecla" onclick="teclaPresionada('C'); contadorErrores('C'); contadorAciertos('C');">C</button>
+                <button id="letraD" class="tecla" onclick="teclaPresionada('D'); contadorErrores('D'); contadorAciertos('D');">D</button>
+                <button id="letraE" class="tecla" onclick="teclaPresionada('E'); contadorErrores('E'); contadorAciertos('E');">E</button>
+                <button id="letraF" class="tecla" onclick="teclaPresionada('F'); contadorErrores('F'); contadorAciertos('F');">F</button>
+                <button id="letraG" class="tecla" onclick="teclaPresionada('G'); contadorErrores('G'); contadorAciertos('G');">G</button>
+                <button id="letraH" class="tecla" onclick="teclaPresionada('H'); contadorErrores('H'); contadorAciertos('H');">H</button>
+                <button id="letraI" class="tecla" onclick="teclaPresionada('I'); contadorErrores('I'); contadorAciertos('I');">I</button>
+                <button id="letraJ" class="tecla" onclick="teclaPresionada('J'); contadorErrores('J'); contadorAciertos('J');">J</button>
+                <button id="letraK" class="tecla" onclick="teclaPresionada('K'); contadorErrores('K'); contadorAciertos('K');">K</button>
+                <button id="letraL" class="tecla" onclick="teclaPresionada('L'); contadorErrores('L'); contadorAciertos('L');">L</button>
+                <button id="letraM" class="tecla" onclick="teclaPresionada('M'); contadorErrores('M'); contadorAciertos('M');">M</button>
+                <button id="letraN" class="tecla" onclick="teclaPresionada('N'); contadorErrores('N'); contadorAciertos('N');">N</button>
+                <button id="letraÑ" class="tecla" onclick="teclaPresionada('Ñ'); contadorErrores('Ñ'); contadorAciertos('Ñ');">Ñ</button>
+                <button id="letraO" class="tecla" onclick="teclaPresionada('O'); contadorErrores('O'); contadorAciertos('O');">O</button>
+                <button id="letraP" class="tecla" onclick="teclaPresionada('P'); contadorErrores('P'); contadorAciertos('P');">P</button>
+                <button id="letraQ" class="tecla" onclick="teclaPresionada('Q'); contadorErrores('Q'); contadorAciertos('Q');">Q</button>
+                <button id="letraR" class="tecla" onclick="teclaPresionada('R'); contadorErrores('R'); contadorAciertos('R');">R</button>
+                <button id="letraS" class="tecla" onclick="teclaPresionada('S'); contadorErrores('S'); contadorAciertos('S');">S</button>
+                <button id="letraT" class="tecla" onclick="teclaPresionada('T'); contadorErrores('T'); contadorAciertos('T');">T</button>
+                <button id="letraU" class="tecla" onclick="teclaPresionada('U'); contadorErrores('U'); contadorAciertos('U');">U</button>
+                <button id="letraV" class="tecla" onclick="teclaPresionada('V'); contadorErrores('V'); contadorAciertos('V');">V</button>
+                <button id="letraW" class="tecla" onclick="teclaPresionada('W'); contadorErrores('W'); contadorAciertos('W');">W</button>
+                <button id="letraX" class="tecla" onclick="teclaPresionada('X'); contadorErrores('X'); contadorAciertos('X');">X</button>
+                <button id="letraY" class="tecla" onclick="teclaPresionada('Y'); contadorErrores('Y'); contadorAciertos('Y');">Y</button>
+                <button id="letraZ" class="tecla" onclick="teclaPresionada('Z'); contadorErrores('Z'); contadorAciertos('Z');">Z</button>
+            </div>
+            <div class="conteBtnMenor">
+                <button id="btnNuevoJuego" class="botonUniv btnMenor">Nuevo juego</button>
+                <button id="btnDesistir" class="botonUniv btnMenor">Desistir</button>
+            </div>
+    </section>
+    <footer class="footer" id="vistaFooter">
+        <div>
+            <a href="https://www.linkedin.com/in/erick-ortiz-apc/"><img src="img/linkedIn.png" alt="logo linkedin" class="logo"></a>
+            <a href="https://github.com/erick-ortiz-apc"><img src="img/github.png" alt="logo github" class="logo"></a>
+        </div>
+        <div id="copyright">
+            <p>Copyright &copy Erick Ortiz - 2022</p>
+        </div>
+    </footer>
+</body>
+</html>
